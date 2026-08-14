@@ -3,10 +3,12 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.Book;
@@ -51,7 +53,7 @@ public class BookController {
     }
 
     //update -> /books
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateBook(@PathVariable Long id , @ModelAttribute Book book) {
         book.setId(id);
         service.updateBook(book);
@@ -66,7 +68,7 @@ public class BookController {
     }
     
     //delete -> /books
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
         service.deleteBook(id);
         return "redirect:/books";
